@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#090a0d">
+  <title>MATRIX CORE — Zygisk Runtime Manager</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true"><span>MX</span></div>
+      <div class="brand-copy">
+        <p class="eyebrow">MR MATRIX / SYSTEMS</p>
+        <h1>MATRIX <span>CORE</span></h1>
+        <p class="subtitle">ZYGISK RUNTIME MANAGER</p>
+      </div>
+      <span class="pill demo">UI PROTOTYPE</span>
+    </header>
+
+    <section class="status-panel" aria-labelledby="status-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow red">SYSTEM OVERVIEW</p>
+          <h2 id="status-title">Runtime status</h2>
+        </div>
+        <span class="pill neutral">Not connected</span>
+      </div>
+      <p class="notice">This is a visual prototype. No live device or runtime data is connected.</p>
+      <div class="metrics">
+        <article class="metric">
+          <span class="metric-label">Runtime version</span>
+          <strong>—</strong>
+          <span class="metric-note">Awaiting authorized integration</span>
+        </article>
+        <article class="metric">
+          <span class="metric-label">Compatibility</span>
+          <strong>—</strong>
+          <span class="metric-note">Not yet evaluated</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="management" aria-labelledby="management-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow red">CONTROL CENTER</p>
+          <h2 id="management-title">Management</h2>
+        </div>
+      </div>
+
+      <button class="feature" data-panel="settings" aria-expanded="false">
+        <span class="feature-icon" aria-hidden="true">⌘</span>
+        <span class="feature-copy">
+          <strong>Runtime settings</strong>
+          <span>Reserved for supported, validated options.</span>
+        </span>
+        <span class="chevron" aria-hidden="true">›</span>
+      </button>
+      <div class="feature-detail" id="settings" hidden>
+        <p>No runtime settings are exposed in this prototype. Controls will be added only after the chosen runtime provides a documented interface.</p>
+      </div>
+
+      <button class="feature" data-panel="zygote" aria-expanded="false">
+        <span class="feature-icon" aria-hidden="true">◎</span>
+        <span class="feature-copy">
+          <strong>Zygote controls</strong>
+          <span>Reserved for engine-supported controls.</span>
+        </span>
+        <span class="chevron" aria-hidden="true">›</span>
+      </button>
+      <div class="feature-detail" id="zygote" hidden>
+        <p>Blacklist and injection controls are not implemented. No process injection or configuration changes are performed by this page.</p>
+      </div>
+
+      <button class="feature" data-panel="diagnostics" aria-expanded="false">
+        <span class="feature-icon" aria-hidden="true">▤</span>
+        <span class="feature-copy">
+          <strong>Diagnostics</strong>
+          <span>Future compatibility reports and logs.</span>
+        </span>
+        <span class="chevron" aria-hidden="true">›</span>
+      </button>
+      <div class="feature-detail" id="diagnostics" hidden>
+        <p>Diagnostics are not connected. Future reports should redact secrets and personal identifiers by default.</p>
+      </div>
+
+      <button class="feature" data-panel="updates" aria-expanded="false">
+        <span class="feature-icon" aria-hidden="true">↻</span>
+        <span class="feature-copy">
+          <strong>Updates &amp; integrity</strong>
+          <span>Future release history and checksum verification.</span>
+        </span>
+        <span class="chevron" aria-hidden="true">›</span>
+      </button>
+      <div class="feature-detail" id="updates" hidden>
+        <p>No downloads or automatic updates are enabled. Future releases must be reviewed, tested, and checksum-verified before publication.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="footer-dot" aria-hidden="true"></span>
+      <p>MR MATRIX · ENGINEERING BUILD · NOT CONNECTED TO A LIVE RUNTIME</p>
+      <span class="version">UI 0.1.0</span>
+    </footer>
+  </main>
+</body>
+</html>
