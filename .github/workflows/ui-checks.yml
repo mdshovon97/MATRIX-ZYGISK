@@ -1,0 +1,51 @@
+name: Matrix UI checks
+
+on:
+  push:
+    paths:
+      - "webui/**"
+      - ".github/workflows/ui-checks.yml"
+  pull_request:
+    paths:
+      - "webui/**"
+      - ".github/workflows/ui-checks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-ui-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s webui/index.html
+          test -s webui/styles.css
+          test -s webui/app.js
+          grep -q 'NOT CONNECTED TO A LIVE RUNTIME' webui/index.html
+          grep -q 'No live device or runtime data is connected' webui/index.html
+
+      - name: Check JavaScript syntax
+        run: node --check webui/app.js
+
+      - name: Check for accidental remote script imports
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -E '<script[^>]+src=["'\'']https?://' webui/index.html; then
+            echo "Remote script import found; review before merge."
+            exit 1
+          fi
+
+      - name: Check that UI is not misrepresented as live
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'Not connected' webui/index.html
+          grep -q 'UI PROTOTYPE' webui/index.html
