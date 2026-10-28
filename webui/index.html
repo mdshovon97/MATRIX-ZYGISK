@@ -5,87 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#09090c">
-<meta name="description" content="MATRIX CORE independent Android systems WebUI prototype. Not connected to a live runtime.">
-<title>MATRIX CORE — Zygisk Runtime UI Prototype</title>
+<meta name="description" content="MATRIX-ZYGISK independent Android systems WebUI prototype. No live runtime connection.">
+<title>MATRIX-ZYGISK — Runtime Control Center v0.4</title>
 <link rel="stylesheet" href="styles.css">
-
-<style>
-/* MATRIX-ZYGISK v0.3.2 — premium CONTROL CENTER header */
-.management{position:relative}
-.management-heading{
-  position:relative;isolation:isolate;align-items:center;gap:14px;
-  margin:0 0 15px;padding:18px 16px;
-  border:1px solid #49212a;border-radius:19px;
-  background:
-    radial-gradient(ellipse at 0% 0%,rgb(255 70 88 / 13%),transparent 60%),
-    linear-gradient(135deg,#191117 0%,#111116 56%,#151116 100%);
-  box-shadow:inset 0 1px 0 rgb(255 255 255 / 3%),0 10px 28px rgb(0 0 0 / 16%);
-  overflow:hidden;
-}
-.management-heading:before{
-  content:"";position:absolute;inset:0 auto 0 0;width:3px;
-  background:linear-gradient(180deg,#ff6b79,#a91f36 70%,transparent);
-}
-.management-heading:after{
-  content:"";position:absolute;z-index:-1;right:-25px;top:-40px;width:150px;height:150px;
-  border:1px solid rgb(255 70 88 / 9%);border-radius:50%;
-  box-shadow:0 0 0 16px rgb(255 70 88 / 2%),0 0 0 34px rgb(255 70 88 / 2%);
-  pointer-events:none;
-}
-.control-heading{display:flex;align-items:flex-start;gap:13px;flex:1;min-width:0}
-.control-heading>div{min-width:0}
-.control-heading-icon{
-  display:grid;place-items:center;position:relative;flex:0 0 48px;width:48px;height:48px;
-  margin-top:2px;border:1px solid #78303c;border-radius:15px;color:#ff6575;
-  background:linear-gradient(145deg,#3a1720 0%,#211219 62%,#171116 100%);
-  box-shadow:inset 0 1px 0 rgb(255 255 255 / 6%),0 0 22px rgb(255 70 88 / 8%);
-}
-.control-heading-icon:after{content:"";position:absolute;inset:4px;border:1px solid rgb(255 100 117 / 12%);border-radius:10px;pointer-events:none}
-.control-heading-icon svg{display:block;width:24px;height:24px;filter:drop-shadow(0 0 5px rgb(255 70 88 / 22%))}
-.management-heading .eyebrow{margin:0 0 5px;color:#ff6575;font-size:9px;letter-spacing:.17em}
-.management-heading h2{font-size:clamp(18px,4.8vw,22px);line-height:1.2;letter-spacing:-.045em}
-.management-heading .description{max-width:440px;margin-top:7px;font-size:11px;line-height:1.55}
-.module-count{
-  position:relative;z-index:1;flex:0 0 auto;gap:7px;padding:9px 10px;
-  border:1px solid #3a3038;border-radius:12px;color:#e0d9df;
-  background:rgb(10 10 14 / 72%);font-size:8px;letter-spacing:.07em;
-  box-shadow:inset 0 1px 0 rgb(255 255 255 / 3%);
-}
-.count-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5265;box-shadow:0 0 9px rgb(255 70 88 / 55%)}
-.module-icon svg{display:block;width:20px;height:20px}
-.chevron{
-  display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;
-  border:1px solid #39303a;border-radius:10px;color:#c9c3ce;background:#17151c;
-  transition:transform .18s ease,color .18s ease,border-color .18s ease,background .18s ease;
-}
-.chevron svg{display:block;width:17px;height:17px}
-.module-button[aria-expanded="true"] .chevron{transform:rotate(180deg);color:#ff6575;border-color:#6a2b38;background:#25131a}
-.module-button[aria-expanded="false"] .chevron{transform:rotate(0deg)}
-.module-button:hover .chevron{border-color:#6a2b38}
-@media(max-width:430px){
- .management-heading{align-items:flex-start;gap:8px;padding:15px 12px;border-radius:16px}
- .control-heading{gap:10px}
- .control-heading-icon{flex-basis:41px;width:41px;height:41px;border-radius:13px}
- .control-heading-icon svg{width:21px;height:21px}
- .management-heading .eyebrow{font-size:8px;letter-spacing:.12em}
- .management-heading h2{font-size:18px}
- .management-heading .description{font-size:10px}
- .module-count{padding:8px 7px;font-size:7px;gap:5px}
- .count-dot{width:6px;height:6px}
- .chevron{flex-basis:29px;width:29px;height:29px}
-}
-@media(max-width:400px){
- .management-heading{flex-wrap:wrap;align-items:flex-start}
- .control-heading{flex:1 1 100%}
- .module-count{margin-left:51px}
-}
-@media(max-width:350px){
- .management-heading{flex-wrap:wrap}
- .module-count{margin-left:51px}
-}
-@media(prefers-reduced-motion:reduce){.chevron{transition:none}}
-</style>
-
+<script src="runtime-contract.js" defer></script>
+<script src="connection.js" defer></script>
 <script src="app.js" defer></script>
 </head>
 <body>
@@ -93,75 +17,69 @@
 <main class="shell" id="main">
 <header class="topbar">
   <div class="logo" aria-hidden="true">MR</div>
-  <div class="brand"><p class="eyebrow">MR MATRIX / SYSTEMS</p><h1>MATRIX <span>CORE</span></h1><p class="subtitle">ZYGISK MANAGEMENT UI · PROTOTYPE</p></div>
+  <div class="brand"><p class="eyebrow">MR MATRIX / SYSTEMS</p><h1>MATRIX <span>ZYGISK</span></h1><p class="subtitle">RUNTIME CONTROL CENTER · v0.4</p></div>
   <span class="prototype-badge"><span aria-hidden="true">●</span> UI PROTOTYPE</span>
 </header>
+
 <section class="notice" aria-labelledby="notice-title">
   <span class="notice-mark" aria-hidden="true">!</span>
-  <div><h2 id="notice-title">Prototype mode — no device connected</h2><p>This website is a visual demo. Controls do not change Zygisk Next, root settings, or Android processes.</p></div>
+  <div><h2 id="notice-title">Prototype mode — no device connected</h2><p>This milestone defines a data contract and disconnected provider. It does not control Android, root, or Zygisk Next.</p></div>
 </section>
+
 <section class="card" aria-labelledby="runtime-heading">
-  <div class="section-heading"><div><p class="eyebrow accent">SYSTEM OVERVIEW</p><h2 id="runtime-heading">Runtime status</h2></div><span class="status-pill">● Not connected</span></div>
-  <div class="runtime"><div class="runtime-logo" aria-hidden="true">MX<small>CORE</small></div><div class="runtime-copy"><small class="micro-label">ACTIVE RUNTIME</small><h3>Awaiting connection</h3><p>No live device or runtime data is connected.</p></div><span class="demo-tag">DEMO</span></div>
+  <div class="section-heading"><div><p class="eyebrow accent">SYSTEM OVERVIEW</p><h2 id="runtime-heading">Runtime status</h2></div><span class="status-pill" id="connection-label">Not connected</span></div>
+  <div class="runtime"><div class="runtime-logo" aria-hidden="true">MX<small>CORE</small></div><div class="runtime-copy"><small class="micro-label">CONNECTION PROVIDER</small><h3 id="provider-label">SIMULATION ONLY</h3><p id="connection-message">Simulation mode: no Android device or runtime is connected.</p></div><span class="demo-tag">v0.4</span></div>
   <div class="metrics" aria-label="Runtime information placeholders">
-    <article class="metric"><span>Runtime version</span><strong>—</strong><small>Not detected</small></article>
-    <article class="metric"><span>Injection state</span><strong class="muted-value">Unknown</strong><small>Requires live integration</small></article>
-    <article class="metric"><span>Root implementation</span><strong class="muted-value">Unknown</strong><small>No root environment read</small></article>
-    <article class="metric"><span>Compatibility</span><strong class="muted-value">Pending</strong><small>Not evaluated on device</small></article>
+    <article class="metric"><span>Runtime version</span><strong>—</strong><small>Unavailable</small></article>
+    <article class="metric"><span>Injection state</span><strong class="muted-value">Unknown</strong><small>No live telemetry</small></article>
+    <article class="metric"><span>Root implementation</span><strong class="muted-value">Unknown</strong><small>No root API</small></article>
+    <article class="metric"><span>Compatibility</span><strong class="muted-value">Not verified</strong><small>Device testing pending</small></article>
   </div>
-  <div class="foot"><span aria-hidden="true">●</span> LIVE TELEMETRY UNAVAILABLE <span aria-hidden="true">/</span> UI BUILD 0.3.2</div>
+  <div class="action-row"><button class="primary-button" id="connect-button" type="button">Check connection state</button><span class="footnote">Local contract only · no device probing</span></div>
+  <div class="foot"><span aria-hidden="true">●</span> LIVE TELEMETRY UNAVAILABLE <span aria-hidden="true">/</span> UI BUILD 0.4</div>
 </section>
+
 <section class="management" aria-labelledby="management-heading">
   <div class="section-heading management-heading">
-  <div class="control-heading">
-    <span class="control-heading-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="7" height="7" rx="2"/>
-        <rect x="14" y="3" width="7" height="7" rx="2"/>
-        <rect x="3" y="14" width="7" height="7" rx="2"/>
-        <rect x="14" y="14" width="7" height="7" rx="2"/>
-        <path d="M6.5 6.5h0M17.5 6.5h0M6.5 17.5h0M17.5 17.5h0" stroke-width="2.6"/>
-      </svg>
-    </span>
-    <div>
-      <p class="eyebrow accent">CONTROL CENTER <span aria-hidden="true">/</span> 04 SYSTEMS</p>
-      <h2 id="management-heading">Management modules</h2>
-      <p class="description">Choose a module to inspect its planned controls. All interactions remain in local demo mode.</p>
-    </div>
+    <div class="control-heading"><span class="control-heading-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span><div><p class="eyebrow accent">CONTROL CENTER / 04 SYSTEMS</p><h2 id="management-heading">Management modules</h2><p class="description">Inspect planned controls. Every setting below is simulation-only.</p></div></div>
+    <span class="module-count"><span class="count-dot" aria-hidden="true"></span> 04 MODULES</span>
   </div>
-  <span class="module-count"><span class="count-dot" aria-hidden="true"></span> 04 MODULES</span>
-</div>
   <nav class="quick-nav" aria-label="Jump to management module"><a href="#module-settings">Settings</a><a href="#module-zygote">Zygote</a><a href="#module-diagnostics">Diagnostics</a><a href="#module-updates">Updates</a></nav>
+
   <section class="module" id="module-settings">
-    <button class="module-button" type="button" data-panel="settings" aria-controls="settings" aria-expanded="true"><span class="module-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h7M15 7h5M4 17h3M11 17h9"/><circle cx="13" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></span><span class="module-copy"><small>CONFIGURATION</small><strong>Runtime settings</strong><span>Policy, memory, linker and developer logging</span></span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
+    <button class="module-button" type="button" data-panel="settings" aria-controls="settings" aria-expanded="true"><span class="module-icon" aria-hidden="true">⚙</span><span class="module-copy"><small>CONFIGURATION</small><strong>Runtime settings</strong><span>Policy, memory, linker and developer logging</span></span><span class="chevron" aria-hidden="true">⌄</span></button>
     <div class="content" id="settings">
       <div class="setting"><div><strong>Denylist policy</strong><p>Demonstration of available policy choices.</p></div><select data-demo aria-label="Denylist policy demo value"><option>Disabled</option><option>Enforced</option><option>Unmount Only</option></select></div>
-      <div class="setting"><div><strong>Treat non-root apps as denylist</strong><p>Uses root-manager app classification where supported.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Treat non-root apps as denylist demo switch"><span aria-hidden="true"></span></label></div>
-      <div class="setting"><div><strong>Anonymous memory</strong><p>May reduce log readability; this is not a RAM-optimization switch.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Anonymous memory demo switch"><span aria-hidden="true"></span></label></div>
-      <div class="setting"><div><strong>Use Zygisk Next linker</strong><p>Linker compatibility can vary by device and module.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Use Zygisk Next linker demo switch"><span aria-hidden="true"></span></label></div>
-      <div class="setting"><div><strong>Log to kernel dmesg</strong><p>Developer-oriented logging when supported.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Kernel logging demo switch"><span aria-hidden="true"></span></label></div>
-      <p class="inline-note">ⓘ Demo controls are not saved and do not send commands to Android.</p>
+      <div class="setting"><div><strong>Treat non-root apps as denylist</strong><p>Illustrative control only; no root-manager state is read.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Treat non-root apps as denylist demo switch"><span aria-hidden="true"></span></label></div>
+      <div class="setting"><div><strong>Anonymous memory</strong><p>Not a RAM-optimization switch; demo only.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Anonymous memory demo switch"><span aria-hidden="true"></span></label></div>
+      <div class="setting"><div><strong>Use Zygisk Next linker</strong><p>Compatibility varies; no runtime change is possible here.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Use Zygisk Next linker demo switch"><span aria-hidden="true"></span></label></div>
+      <div class="setting"><div><strong>Log to kernel dmesg</strong><p>Developer-oriented logging concept; no kernel access.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Kernel logging demo switch"><span aria-hidden="true"></span></label></div>
+      <p class="inline-note">Demo controls are not saved and do not send commands to Android.</p>
     </div>
   </section>
+
   <section class="module" id="module-zygote">
-    <button class="module-button" type="button" data-panel="zygote" aria-controls="zygote" aria-expanded="false"><span class="module-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M22 12h-3M12 22v-3M2 12h3"/></svg></span><span class="module-copy"><small>PROCESS MONITOR</small><strong>Zygote monitoring</strong><span>Injection state, process status and blacklist concept</span></span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-    <div class="content" id="zygote" hidden><div class="two"><div class="tile"><small>ZYGOTE STATUS</small><strong>Unknown</strong><p>No device connection</p></div><div class="tile"><small>INJECTION</small><strong>Unknown</strong><p>No runtime telemetry</p></div></div><h3 class="subhead">Process inventory <span class="demo-tag">NOT AVAILABLE</span></h3><div class="empty"><strong>No process data</strong><p>32-bit and 64-bit details require a supported integration.</p></div><div class="setting"><div><strong>Zygote blacklist</strong><p>Planned view for excluding selected Zygote processes. Separate from the app denylist.</p></div><span class="status-pill">Not connected</span></div></div>
+    <button class="module-button" type="button" data-panel="zygote" aria-controls="zygote" aria-expanded="false"><span class="module-icon" aria-hidden="true">◎</span><span class="module-copy"><small>PROCESS MONITOR</small><strong>Zygote monitoring</strong><span>Injection state, process status and blacklist concept</span></span><span class="chevron" aria-hidden="true">⌄</span></button>
+    <div class="content" id="zygote" hidden><div class="two"><div class="tile"><small>ZYGOTE STATUS</small><strong>Unknown</strong><p>No device connection</p></div><div class="tile"><small>INJECTION</small><strong>Unknown</strong><p>No runtime telemetry</p></div></div><h3 class="subhead">Process inventory <span class="demo-tag">UNAVAILABLE</span></h3><div class="empty"><strong>No process data</strong><p>32-bit and 64-bit details require a supported integration.</p></div><div class="setting"><div><strong>Zygote blacklist</strong><p>Separate concept from app denylist. Runtime support not implemented.</p></div><span class="status-pill">Planned</span></div></div>
   </section>
+
   <section class="module" id="module-diagnostics">
-    <button class="module-button" type="button" data-panel="diagnostics" aria-controls="diagnostics" aria-expanded="false"><span class="module-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M10 12h5M10 16h5"/></svg></span><span class="module-copy"><small>HEALTH &amp; REPORTS</small><strong>Diagnostics</strong><span>Module inventory, detected issues and report export</span></span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-    <div class="content" id="diagnostics" hidden><div class="diag-list"><div><b>01</b><span><strong>Installed modules</strong><small>32-bit / 64-bit inventory unavailable</small></span><em>Unknown</em></div><div><b>02</b><span><strong>Module issues</strong><small>No issue scan has been performed</small></span><em>Pending</em></div><div><b>03</b><span><strong>Root environment</strong><small>Implementation and version not detected</small></span><em>Unknown</em></div><div><b>04</b><span><strong>Bugreport</strong><small>Requires supported runtime integration</small></span><em>Unavailable</em></div></div><p class="inline-note">! Diagnostic archives can contain identifiers and logs. Review and redact them before sharing.</p></div>
+    <button class="module-button" type="button" data-panel="diagnostics" aria-controls="diagnostics" aria-expanded="false"><span class="module-icon" aria-hidden="true">▤</span><span class="module-copy"><small>HEALTH &amp; REPORTS</small><strong>Diagnostics</strong><span>Module inventory, detected issues and report export</span></span><span class="chevron" aria-hidden="true">⌄</span></button>
+    <div class="content" id="diagnostics" hidden><div class="diag-list"><div><b>01</b><span><strong>Installed modules</strong><small>32-bit / 64-bit inventory unavailable</small></span><em>Unavailable</em></div><div><b>02</b><span><strong>Module issues</strong><small>No issue scan has been performed</small></span><em>Not run</em></div><div><b>03</b><span><strong>Root environment</strong><small>Implementation and version not detected</small></span><em>Unknown</em></div><div><b>04</b><span><strong>Bugreport</strong><small>No report generator is connected</small></span><em>Unavailable</em></div></div><p class="inline-note">Diagnostic archives can contain identifiers and logs. Review and redact before sharing.</p></div>
   </section>
+
   <section class="module" id="module-updates">
-    <button class="module-button" type="button" data-panel="updates" aria-controls="updates" aria-expanded="false"><span class="module-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7v5h-5"/><path d="M4.8 9a7.5 7.5 0 0 1 12.7-2L20 12M4 17v-5h5"/><path d="M19.2 15a7.5 7.5 0 0 1-12.7 2L4 12"/></svg></span><span class="module-copy"><small>UPSTREAM TRACKING</small><strong>Updates &amp; integrity</strong><span>Release review, version comparison and checksum verification</span></span><span class="chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button>
-    <div class="content" id="updates" hidden><div class="release"><div><small>UPSTREAM PROJECT</small><strong>Zygisk Next</strong><p>Review official release details at the source.</p></div><a href="https://github.com/LSPosed/ZygiskNext/releases" target="_blank" rel="noopener noreferrer">View releases ↗</a></div><div class="check-list"><div><b>01</b><span><strong>Release discovery</strong><small>Not automated in this prototype</small></span><em>Planned</em></div><div><b>02</b><span><strong>Version / changelog review</strong><small>Review compatibility notes before adoption</small></span><em>Manual</em></div><div><b>03</b><span><strong>SHA-256 verification</strong><small>Compare against a trusted published digest</small></span><em>Not run</em></div></div><p class="inline-note">ⓘ This UI does not download, modify, repackage, or install upstream binaries.</p></div>
+    <button class="module-button" type="button" data-panel="updates" aria-controls="updates" aria-expanded="false"><span class="module-icon" aria-hidden="true">↻</span><span class="module-copy"><small>UPSTREAM TRACKING</small><strong>Updates &amp; integrity</strong><span>Release review, version comparison and checksum verification</span></span><span class="chevron" aria-hidden="true">⌄</span></button>
+    <div class="content" id="updates" hidden><div class="release"><div><small>UPSTREAM PROJECT</small><strong>Zygisk Next</strong><p>Review official releases and restrictions directly.</p></div><a href="https://github.com/LSPosed/ZygiskNext/releases" target="_blank" rel="noopener noreferrer">View releases ↗</a></div><div class="check-list"><div><b>01</b><span><strong>Release discovery</strong><small>Not automated</small></span><em>Planned</em></div><div><b>02</b><span><strong>Version / changelog review</strong><small>Manual review required</small></span><em>Manual</em></div><div><b>03</b><span><strong>SHA-256 verification</strong><small>No checksum verification has run</small></span><em>Not run</em></div></div><p class="inline-note">This UI does not download, modify, repackage, or install upstream binaries.</p></div>
   </section>
 </section>
+
 <section class="card readiness" aria-labelledby="readiness-heading">
   <div class="section-heading"><div><p class="eyebrow accent">ENGINEERING STATUS</p><h2 id="readiness-heading">Integration readiness</h2></div><span class="status-pill">PHASE 01</span></div>
-  <div class="ready-list"><div><i class="ready-dot good" aria-hidden="true"></i><span>Independent UI shell</span><b>READY</b></div><div><i class="ready-dot good" aria-hidden="true"></i><span>Prototype interactions</span><b>READY</b></div><div><i class="ready-dot" aria-hidden="true"></i><span>Authorized runtime interface</span><b>PENDING</b></div><div><i class="ready-dot" aria-hidden="true"></i><span>Device-side validation</span><b>PENDING</b></div></div>
+  <div class="ready-list"><div><i class="ready-dot good" aria-hidden="true"></i><span>Independent UI shell</span><b>READY</b></div><div><i class="ready-dot good" aria-hidden="true"></i><span>Runtime contract and disconnected provider</span><b>READY</b></div><div><i class="ready-dot" aria-hidden="true"></i><span>Authorized runtime interface</span><b>PENDING REVIEW</b></div><div><i class="ready-dot" aria-hidden="true"></i><span>Device-side validation</span><b>PENDING</b></div></div>
 </section>
-<footer class="footer"><span class="footer-logo" aria-hidden="true">MX</span><p><strong>MR MATRIX • SHOVON XOS</strong><br>ENGINEERING BUILD · NOT CONNECTED TO A LIVE RUNTIME</p><small>UI 0.3.2</small></footer>
+<footer class="footer"><span class="footer-logo" aria-hidden="true">MX</span><p><strong>MR MATRIX • SHOVON XOS</strong><br>INDEPENDENT UI · NOT CONNECTED TO A LIVE RUNTIME</p><small>UI 0.4</small></footer>
 </main>
-<div id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>Demo only — no runtime changes were made.</div>
+<div id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>Simulation only — no Android or runtime setting was changed.</div>
 </body>
 </html>
