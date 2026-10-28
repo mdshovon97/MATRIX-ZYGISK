@@ -1,204 +1,45 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#090a0d">
-
-  <title>MATRIX CORE — Zygisk Runtime Manager</title>
-
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#09090c">
+<meta name="description" content="MATRIX CORE independent Zygisk runtime UI prototype">
+<title>MATRIX CORE — Zygisk Runtime Manager</title>
+<link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
 </head>
-
 <body>
-  <main class="shell">
-    <header class="topbar">
-      <div class="brand-mark" aria-hidden="true">
-        <span>MX</span>
-      </div>
-
-      <div class="brand-copy">
-        <p class="eyebrow">MR MATRIX / SYSTEMS</p>
-        <h1>MATRIX <span>CORE</span></h1>
-        <p class="subtitle">ZYGISK RUNTIME MANAGER</p>
-      </div>
-
-      <span class="pill demo">UI PROTOTYPE</span>
-    </header>
-
-    <section class="status-panel" aria-labelledby="status-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow red">SYSTEM OVERVIEW</p>
-          <h2 id="status-title">Runtime status</h2>
-        </div>
-
-        <span class="pill neutral">Not connected</span>
-      </div>
-
-      <p class="notice">
-        This is a visual prototype. No live device or runtime data is connected.
-      </p>
-
-      <div class="metrics">
-        <article class="metric">
-          <span class="metric-label">Runtime version</span>
-          <strong>—</strong>
-          <span class="metric-note">Awaiting authorized integration</span>
-        </article>
-
-        <article class="metric">
-          <span class="metric-label">Compatibility</span>
-          <strong>—</strong>
-          <span class="metric-note">Not yet evaluated</span>
-        </article>
-      </div>
-    </section>
-
-    <section
-      class="management"
-      aria-labelledby="management-title"
-    >
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow red">CONTROL CENTER</p>
-          <h2 id="management-title">Management</h2>
-        </div>
-      </div>
-
-      <!-- Runtime settings -->
-      <button
-        class="feature"
-        type="button"
-        data-panel="settings"
-        aria-controls="settings"
-        aria-expanded="false"
-      >
-        <span class="feature-icon" aria-hidden="true">⌘</span>
-
-        <span class="feature-copy">
-          <strong>Runtime settings</strong>
-          <span>Reserved for supported, validated options.</span>
-        </span>
-
-        <span class="chevron" aria-hidden="true">›</span>
-      </button>
-
-      <div
-        class="feature-detail"
-        id="settings"
-        hidden
-      >
-        <p>
-          No runtime settings are exposed in this prototype.
-          Controls will be added only after the chosen runtime
-          provides a documented interface.
-        </p>
-      </div>
-
-      <!-- Zygote controls -->
-      <button
-        class="feature"
-        type="button"
-        data-panel="zygote"
-        aria-controls="zygote"
-        aria-expanded="false"
-      >
-        <span class="feature-icon" aria-hidden="true">◎</span>
-
-        <span class="feature-copy">
-          <strong>Zygote controls</strong>
-          <span>Reserved for engine-supported controls.</span>
-        </span>
-
-        <span class="chevron" aria-hidden="true">›</span>
-      </button>
-
-      <div
-        class="feature-detail"
-        id="zygote"
-        hidden
-      >
-        <p>
-          Blacklist and injection controls are not implemented.
-          No process injection or configuration changes are
-          performed by this page.
-        </p>
-      </div>
-
-      <!-- Diagnostics -->
-      <button
-        class="feature"
-        type="button"
-        data-panel="diagnostics"
-        aria-controls="diagnostics"
-        aria-expanded="false"
-      >
-        <span class="feature-icon" aria-hidden="true">▤</span>
-
-        <span class="feature-copy">
-          <strong>Diagnostics</strong>
-          <span>Future compatibility reports and logs.</span>
-        </span>
-
-        <span class="chevron" aria-hidden="true">›</span>
-      </button>
-
-      <div
-        class="feature-detail"
-        id="diagnostics"
-        hidden
-      >
-        <p>
-          Diagnostics are not connected. Future reports should
-          redact secrets and personal identifiers by default.
-        </p>
-      </div>
-
-      <!-- Updates and integrity -->
-      <button
-        class="feature"
-        type="button"
-        data-panel="updates"
-        aria-controls="updates"
-        aria-expanded="false"
-      >
-        <span class="feature-icon" aria-hidden="true">↻</span>
-
-        <span class="feature-copy">
-          <strong>Updates &amp; integrity</strong>
-          <span>Future release history and checksum verification.</span>
-        </span>
-
-        <span class="chevron" aria-hidden="true">›</span>
-      </button>
-
-      <div
-        class="feature-detail"
-        id="updates"
-        hidden
-      >
-        <p>
-          No downloads or automatic updates are enabled.
-          Future releases must be reviewed, tested, and
-          checksum-verified before publication.
-        </p>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <span class="footer-dot" aria-hidden="true"></span>
-
-      <p>
-        MR MATRIX · ENGINEERING BUILD ·
-        NOT CONNECTED TO A LIVE RUNTIME
-      </p>
-
-      <span class="version">UI 0.1.0</span>
-    </footer>
-  </main>
-</body>
-</html>
+<a class="skip" href="#main">Skip to content</a>
+<main class="shell" id="main">
+<header class="topbar"><div class="logo" aria-hidden="true">MR</div><div class="brand"><p class="eyebrow">MR MATRIX / SYSTEMS</p><h1>MATRIX <b>CORE</b></h1><p class="subtitle">ZYGISK RUNTIME MANAGER</p></div><span class="badge">● UI PROTOTYPE</span></header>
+<div class="notice" role="status"><strong>Prototype mode — no device connected</strong><p>Controls demonstrate the interface only. They do not change Zygisk Next, root settings, or Android processes.</p></div>
+<section class="card">
+<div class="heading"><div><p class="eyebrow red">SYSTEM OVERVIEW</p><h2>Runtime status</h2></div><span class="state">● Not connected</span></div>
+<div class="runtime"><div class="runtime-logo">MX<small>CORE</small></div><div><small class="label">ACTIVE RUNTIME</small><h3>Awaiting connection</h3><p>No live runtime data is available.</p></div><span class="tag">DEMO</span></div>
+<div class="metrics">
+<article><span>Runtime version</span><strong>—</strong><small>Not detected</small></article>
+<article><span>Injection state</span><strong class="muted-value">Unknown</strong><small>Requires live integration</small></article>
+<article><span>Root implementation</span><strong class="muted-value">Unknown</strong><small>No root environment read</small></article>
+<article><span>Compatibility</span><strong class="muted-value">Pending</strong><small>Not evaluated on device</small></article>
+</div><div class="foot">● LIVE TELEMETRY UNAVAILABLE <span>/</span> UI BUILD 0.2.0</div>
+</section>
+<section class="management"><div class="heading intro"><div><p class="eyebrow red">CONTROL CENTER</p><h2>Management modules</h2><p class="description">Explore the planned control surface. All controls remain in local demo mode.</p></div><span class="count">04 MODULES</span></div>
+<section class="module"><button class="module-button" data-panel="settings" aria-controls="settings" aria-expanded="true"><span class="icon">⌘</span><span class="module-copy"><small>CONFIGURATION</small><strong>Runtime settings</strong><span>Policy, memory, linker and developer logging</span></span><span class="chevron">⌄</span></button>
+<div class="content" id="settings">
+<div class="setting"><div><strong>Denylist policy</strong><p>Controls how the runtime handles apps on the configured denylist.</p></div><select data-demo aria-label="Denylist policy demo value"><option>Disabled</option><option>Enforced</option><option>Unmount Only</option></select></div>
+<div class="setting"><div><strong>Treat non-root apps as denylist</strong><p>Uses the root manager's app classification where supported.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Treat non-root apps as denylist demo switch"><span></span></label></div>
+<div class="setting"><div><strong>Anonymous memory</strong><p>Loads modules using anonymous memory. It may reduce log readability; it is not a RAM optimization switch.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Anonymous memory demo switch"><span></span></label></div>
+<div class="setting"><div><strong>Use Zygisk Next linker</strong><p>Uses the runtime's built-in linker. Compatibility can vary by device and module.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Use Zygisk Next linker demo switch"><span></span></label></div>
+<div class="setting"><div><strong>Log to kernel dmesg</strong><p>Developer-oriented logging for troubleshooting when supported.</p></div><label class="switch"><input type="checkbox" data-demo aria-label="Kernel logging demo switch"><span></span></label></div>
+<p class="inline-note">ⓘ Demo controls are not saved and do not send commands to Android.</p>
+</div></section>
+<section class="module"><button class="module-button" data-panel="zygote" aria-controls="zygote" aria-expanded="false"><span class="icon">◎</span><span class="module-copy"><small>PROCESS MONITOR</small><strong>Zygote monitoring</strong><span>Injection state, process status and blacklist concept</span></span><span class="chevron">⌄</span></button>
+<div class="content" id="zygote" hidden><div class="two"><div class="tile"><small>ZYGOTE STATUS</small><strong>Unknown</strong><p>No device connection</p></div><div class="tile"><small>INJECTION</small><strong>Unknown</strong><p>No runtime telemetry</p></div></div><h3 class="subhead">Process inventory <span class="tag">NOT AVAILABLE</span></h3><div class="empty"><strong>No process data</strong><p>32-bit and 64-bit details require a supported integration.</p></div><div class="setting"><div><strong>Zygote blacklist</strong><p>Planned view for excluding selected Zygote processes. Separate from the app denylist.</p></div><span class="state">Not connected</span></div></div></section>
+<section class="module"><button class="module-button" data-panel="diagnostics" aria-controls="diagnostics" aria-expanded="false"><span class="icon">▤</span><span class="module-copy"><small>HEALTH &amp; REPORTS</small><strong>Diagnostics</strong><span>Module inventory, detected issues and report export</span></span><span class="chevron">⌄</span></button>
+<div class="content" id="diagnostics" hidden><div class="diag"><div><b>01</b><span><strong>Installed modules</strong><small>32-bit / 64-bit inventory unavailable</small></span><em>Unknown</em></div><div><b>02</b><span><strong>Module issues</strong><small>No issue scan has been performed</small></span><em>Pending</em></div><div><b>03</b><span><strong>Root environment</strong><small>Implementation and version not detected</small></span><em>Unknown</em></div><div><b>04</b><span><strong>Bugreport</strong><small>Requires supported runtime integration</small></span><em>Unavailable</em></div></div><p class="inline-note">! Diagnostic archives can contain device identifiers and logs. Review and redact them before sharing.</p></div></section>
+<section class="module"><button class="module-button" data-panel="updates" aria-controls="updates" aria-expanded="false"><span class="icon">↻</span><span class="module-copy"><small>UPSTREAM TRACKING</small><strong>Updates &amp; integrity</strong><span>Release review, version comparison and checksum verification</span></span><span class="chevron">⌄</span></button>
+<div class="content" id="updates" hidden><div class="release"><div><small>UPSTREAM PROJECT</small><strong>Zygisk Next</strong><p>Check official release information at its source.</p></div><a href="https://github.com/LSPosed/ZygiskNext/releases" target="_blank" rel="noopener noreferrer">View releases ↗</a></div><div class="check"><div><b>01</b><span><strong>Release discovery</strong><small>Not automated in this prototype</small></span><em>Planned</em></div><div><b>02</b><span><strong>Version / changelog review</strong><small>Review compatibility notes before adoption</small></span><em>Manual</em></div><div><b>03</b><span><strong>SHA-256 verification</strong><small>Compare against a trusted published digest</small></span><em>Not run</em></div></div><p class="inline-note">ⓘ This UI does not download, modify, repackage, or install upstream binaries.</p></div></section>
+</section>
+<section class="card readiness"><div class="heading"><div><p class="eyebrow red">ENGINEERING STATUS</p><h2>Integration readiness</h2></div><span class="state">PHASE 01</span></div><div class="ready"><div><i class="good"></i><span>Independent UI shell</span><b>READY</b></div><div><i class="good"></i><span>Prototype interactions</span><b>READY</b></div><div><i></i><span>Authorized runtime interface</span><b>PENDING</b></div><div><i></i><span>Device-side validation</span><b>PENDING</b></div></div></section>
+<footer><span class="footer-logo">MX</span><p><strong>MR MATRIX</strong><br>ENGINEERING BUILD · NOT CONNECTED TO A LIVE RUNTIME</p><small>UI 0.1.0</small></footer>
+</main><div id="toast" role="status" aria-live="polite" hidden>Demo only — no runtime changes were made.</div>
+</body></html>
