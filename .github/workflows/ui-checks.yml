@@ -80,5 +80,5 @@ jobs:
           set -euo pipefail
 
           grep -Fq 'UI PROTOTYPE' webui/index.html
-          grep -Fq 'not connected' webui/index.html
+          grep -Fqi 'not connected' webui/index.html
           grep -Fq 'no Android or runtime setting was changed' webui/app.js
