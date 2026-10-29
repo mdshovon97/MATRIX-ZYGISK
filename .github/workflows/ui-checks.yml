@@ -1,3 +1,4 @@
+
 name: Matrix UI checks
 
 on:
@@ -8,6 +9,7 @@ on:
       - "tests/**"
       - "README.md"
       - ".github/workflows/ui-checks.yml"
+
   pull_request:
     paths:
       - "webui/**"
@@ -15,6 +17,7 @@ on:
       - "tests/**"
       - "README.md"
       - ".github/workflows/ui-checks.yml"
+
   workflow_dispatch:
 
 permissions:
@@ -23,6 +26,7 @@ permissions:
 jobs:
   static-ui-checks:
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -31,6 +35,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+
           test -s webui/index.html
           test -s webui/styles.css
           test -s webui/app.js
@@ -39,26 +44,32 @@ jobs:
           test -s docs/ARCHITECTURE.md
           test -s docs/SECURITY.md
           test -s docs/FEATURE-MATRIX.md
-          grep -q 'no device connected' webui/index.html
-          grep -q 'SIMULATION ONLY' webui/index.html
+
+          grep -Fqi 'no device connected' webui/index.html
+          grep -Fq 'SIMULATION ONLY' webui/index.html
 
       - name: Check JavaScript syntax
         shell: bash
         run: |
           set -euo pipefail
+
           node --check webui/app.js
           node --check webui/runtime-contract.js
           node --check webui/connection.js
           node --check tests/contract-checks.js
 
       - name: Run contract invariants
-        run: node tests/contract-checks.js
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tests/contract-checks.js
 
       - name: Check for accidental remote script imports
         shell: bash
         run: |
           set -euo pipefail
-          if grep -E '<script[^>]+src=["'\\'']https?://' webui/index.html; then
+
+          if grep -Ein '<script[^>]+src[[:space:]]*=[[:space:]]*["'\''][^"'\'']*https?://' webui/index.html; then
             echo "Remote script import found; review before merge."
             exit 1
           fi
@@ -67,6 +78,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -q 'UI PROTOTYPE' webui/index.html
-          grep -q 'not connected' webui/index.html
-          grep -q 'no Android or runtime setting was changed' webui/app.js
+
+          grep -Fq 'UI PROTOTYPE' webui/index.html
+          grep -Fq 'not connected' webui/index.html
+          grep -Fq 'no Android or runtime setting was changed' webui/app.js
